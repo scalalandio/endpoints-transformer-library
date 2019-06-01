@@ -1,5 +1,4 @@
 import sbt._
-
 import Dependencies._
 
 object Dependencies {
@@ -12,11 +11,13 @@ object Dependencies {
   val scalaFmtVersion = "1.5.1"
 
   // libraries versions
+  val akkaVersion       = "2.5.23"
+  val akkaHttpVersion   = "10.1.8"
   val catsVersion       = "1.6.0"
   val catsEffectVersion = "1.3.0"
   val catsMtlVersion    = "0.4.0"
   val endpointsVersion  = "0.9.0"
-  val specs2Version     = "4.5.1"
+  val scalatestVersion  = "3.0.5"
 
   // resolvers
   val resolvers = Seq(
@@ -25,19 +26,19 @@ object Dependencies {
   )
 
   // functional libraries
-  val cats                     = "org.typelevel" %% "cats-core"                   % catsVersion
-  val catsEffect               = "org.typelevel" %% "cats-effect"                 % catsEffectVersion
-  val catsMtl                  = "org.typelevel" %% "cats-mtl-core"               % catsMtlVersion
+  val cats                     = "org.typelevel"     %% "cats-core"                   % catsVersion
+  val catsEffect               = "org.typelevel"     %% "cats-effect"                 % catsEffectVersion
+  val catsMtl                  = "org.typelevel"     %% "cats-mtl-core"               % catsMtlVersion
   // endpoints
-  val endpoints                = "org.julienrf"  %% "endpoints-algebra"           % endpointsVersion
-  val endpointsCirce           = "org.julienrf"  %% "endpoints-algebra-circe"     % endpointsVersion
-  val endpointsJsonSchemaCirce = "org.julienrf"  %% "endpoints-json-schema-circe" % endpointsVersion
-  val endpointsAkkaHttpClient  = "org.julienrf"  %% "endpoints-akka-http-client"  % endpointsVersion
-  val endpointsAkkaHttpServer  = "org.julienrf"  %% "endpoints-akka-http-server"  % endpointsVersion
+  val endpoints                = "org.julienrf"      %% "endpoints-algebra"           % endpointsVersion
+  val endpointsCirce           = "org.julienrf"      %% "endpoints-algebra-circe"     % endpointsVersion
+  val endpointsJsonSchemaCirce = "org.julienrf"      %% "endpoints-json-schema-circe" % endpointsVersion
+  val endpointsAkkaHttpClient  = "org.julienrf"      %% "endpoints-akka-http-client"  % endpointsVersion
+  val endpointsAkkaHttpServer  = "org.julienrf"      %% "endpoints-akka-http-server"  % endpointsVersion
   // testing
-  val spec2Core                = "org.specs2"    %% "specs2-core"                 % specs2Version
-  val spec2Mock                = "org.specs2"    %% "specs2-mock"                 % specs2Version
-  val spec2Scalacheck          = "org.specs2"    %% "specs2-scalacheck"           % specs2Version
+  val akkaStreamTestkit        = "com.typesafe.akka" %% "akka-stream-testkit"         % akkaVersion
+  val akkaHttpTestkit          = "com.typesafe.akka" %% "akka-http-testkit"           % akkaHttpVersion
+  val scalatest                = "org.scalatest"     %% "scalatest"                   % scalatestVersion
 }
 
 trait Dependencies {
@@ -52,7 +53,7 @@ trait Dependencies {
 
   val mainDeps = Seq(cats, catsEffect, catsMtl, endpoints)
 
-  val testDeps = Seq(spec2Core, spec2Mock, spec2Scalacheck)
+  val testDeps = Seq(scalatest, akkaHttpTestkit, akkaStreamTestkit)
 
   implicit final class ProjectRoot(project: Project) {
 
