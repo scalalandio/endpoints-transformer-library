@@ -14,6 +14,19 @@ lazy val core = project
   .setInitialImport("io.scalaland.etl.endpointstl._")
   .configureModule
 
+lazy val circeUtils = project
+  .from("endpoints-tl-circe-utils")
+  .setName("endpoints-tl-circe-utils")
+  .setDescription("Utils for turning CirceCodec into Codec from the outside of algebra")
+  .setInitialImport("io.scalaland.etl.endpointstl.circe._")
+  .configureModule
+  .settings(
+    libraryDependencies ++= Seq(
+      Dependencies.endpointsCirce,
+      Dependencies.endpointsJsonSchemaCirce,
+    )
+  )
+
 lazy val akkaClient = project
   .from("endpoints-tl-akka-client")
   .setName("endpoints-tl-akka-http-client")
@@ -42,17 +55,19 @@ lazy val akkaServer = project
 
 lazy val akkaTestkit = project
   .from("endpoints-tl-akka-testkit")
-  .setName("endpoints-tl-akka-http-tetkit")
+  .setName("endpoints-tl-akka-http-testkit")
   .setDescription("Scalatest utilities for testing Endpoints Akka Http client with Endpoints Akka Http server")
   .setInitialImport("io.scalaland.etl.endpointstl._", "io.scalaland.etl.endpointstl.akkahttp.testkit._")
   .configureModule
   .configureTests()
-  .compileAndTestDependsOn(core, akkaClient, akkaServer)
+  .compileAndTestDependsOn(core, circeUtils, akkaClient, akkaServer)
   .settings(
     libraryDependencies ++= testDeps,
     libraryDependencies ++= Seq(
+      Dependencies.circeGeneric % Test,
       Dependencies.endpointsCirce % Test,
-      Dependencies.endpointsJsonSchemaCirce % Test
+      Dependencies.endpointsJsonSchemaCirce % Test,
+      Dependencies.monix % Test
     )
   )
 

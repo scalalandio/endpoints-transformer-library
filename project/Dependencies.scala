@@ -16,7 +16,9 @@ object Dependencies {
   val catsVersion       = "1.6.0"
   val catsEffectVersion = "1.3.0"
   val catsMtlVersion    = "0.4.0"
+  val circeVersion      = "0.10.0"
   val endpointsVersion  = "0.9.0"
+  val monixVersion      = "3.0.0-RC2"
   val scalatestVersion  = "3.0.5"
 
   // resolvers
@@ -29,6 +31,9 @@ object Dependencies {
   val cats                     = "org.typelevel"     %% "cats-core"                   % catsVersion
   val catsEffect               = "org.typelevel"     %% "cats-effect"                 % catsEffectVersion
   val catsMtl                  = "org.typelevel"     %% "cats-mtl-core"               % catsMtlVersion
+  val monix                    = "io.monix"          %% "monix"                       % monixVersion
+  // serialization
+  val circeGeneric             = "io.circe"          %% "circe-generic-extras"        % circeVersion
   // endpoints
   val endpoints                = "org.julienrf"      %% "endpoints-algebra"           % endpointsVersion
   val endpointsCirce           = "org.julienrf"      %% "endpoints-algebra-circe"     % endpointsVersion
@@ -39,6 +44,8 @@ object Dependencies {
   val akkaStreamTestkit        = "com.typesafe.akka" %% "akka-stream-testkit"         % akkaVersion
   val akkaHttpTestkit          = "com.typesafe.akka" %% "akka-http-testkit"           % akkaHttpVersion
   val scalatest                = "org.scalatest"     %% "scalatest"                   % scalatestVersion
+  // compiler plugins
+  val kindProjector            = "org.typelevel"     %% "kind-projector"              % "0.10.1"
 }
 
 trait Dependencies {

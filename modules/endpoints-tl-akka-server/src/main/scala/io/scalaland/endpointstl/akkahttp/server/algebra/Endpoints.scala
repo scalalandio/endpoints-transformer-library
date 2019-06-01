@@ -20,11 +20,11 @@ import scala.language.higherKinds
   */
 abstract class Endpoints[F[_], E](
   val serverConfig:    ServerConfig[E],
+  val errorCodec:      Codec[String, E],
   val instrumentation: Instrumentation = Instrumentation.Noop
 )(implicit
   F:             Sync[F],
-  FutureToFromF: FutureToFromF[F, E],
-  errorCodec:    Codec[String, E])
+  FutureToFromF: FutureToFromF[F, E])
     extends io.scalaland.endpointstl.algebra.Endpoints[E]
     with io.scalaland.endpointstl.algebra.JsonEntitiesFromCodec
     with Urls

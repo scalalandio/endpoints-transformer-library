@@ -20,11 +20,11 @@ import io.scalaland.endpointstl.akkahttp.client._
 @SuppressWarnings(Array("org.wartremover.warts.Equals"))
 abstract class Endpoints[F[_], E](
   val settings:        EndpointsSettings,
+  val errorCodec:      Codec[String, E],
   val instrumentation: Instrumentation = Instrumentation.Noop
 )(implicit F:          Sync[F],
   E:                   ApplicativeHandle[F, Error[E]],
-  FutureToFromF:       FutureToFromF[F, E],
-  errorCodec:          Codec[String, E],
+  FutureToFromF:       FutureToFromF[F, Error[E]],
   materializer:        Materializer)
     extends io.scalaland.endpointstl.algebra.Endpoints[E]
     with io.scalaland.endpointstl.algebra.JsonEntitiesFromCodec

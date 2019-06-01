@@ -1,6 +1,6 @@
 import sbt._
 import sbt.Keys._
-import sbt.TestFrameworks.Specs2
+import sbt.TestFrameworks.ScalaTest
 import sbt.Tests.Argument
 import com.typesafe.sbt._
 import com.lucidchart.sbt.scalafmt.ScalafmtCorePlugin.autoImport._
@@ -109,6 +109,7 @@ object Settings extends Dependencies {
     resolvers ++= commonResolvers,
 
     libraryDependencies ++= mainDeps,
+    addCompilerPlugin(Dependencies.kindProjector),
 
     Compile / scalafmtOnCompile := true,
 
@@ -144,14 +145,14 @@ object Settings extends Dependencies {
         scalastyleConfig := baseDirectory.value / "scalastyle-test-config.xml",
         scalastyleFailOnError := false,
         fork := requiresFork,
-        testFrameworks := Seq(Specs2)
+        testFrameworks := Seq(ScalaTest)
       )))
       .settings(libraryDependencies ++= testDeps map (_ % config.name))
       .enablePlugins(ScoverageSbtPlugin)
 
     protected def configureSequential(requiresFork: Boolean): Project = configure(requiresFork)
       .settings(inConfig(config)(Seq(
-        testOptions += Argument(Specs2, "sequential"),
+        testOptions += Argument(ScalaTest, "sequential"),
         parallelExecution  := false
       )))
   }
