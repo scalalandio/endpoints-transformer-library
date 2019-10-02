@@ -31,6 +31,14 @@ abstract class Endpoints[F[_], E](
     with Urls
     with endpoints.akkahttp.client.Methods {
 
+  // scalastyle:off method.name
+  override type StatusCode = akka.http.scaladsl.model.StatusCode
+  override def OK:           StatusCode = StatusCodes.OK
+  override def BadRequest:   StatusCode = StatusCodes.BadRequest
+  override def Unauthorized: StatusCode = StatusCodes.Unauthorized
+  override def NotFound:     StatusCode = StatusCodes.NotFound
+  // scalastyle:on
+
   def jsonRequest[A](docs: Documentation)(implicit codec: Codec[String, A]): RequestEntity[A] =
     (a, req) => req.copy(entity = HttpEntity(ContentTypes.`application/json`, codec.encode(a)))
 

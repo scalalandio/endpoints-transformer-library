@@ -4,21 +4,22 @@ import Dependencies._
 object Dependencies {
 
   // scala version
-  val scalaOrganization = "org.scala-lang"
-  val scalaVersion      = "2.12.8"
+  val scalaOrganization  = "org.scala-lang"
+  val scalaVersion       = "2.12.10"
+  val crossScalaVersions = Seq("2.12.10")
 
   // build tools version
   val scalaFmtVersion = "1.5.1"
 
   // libraries versions
-  val akkaVersion       = "2.5.23"
-  val akkaHttpVersion   = "10.1.8"
-  val catsVersion       = "1.6.0"
-  val catsEffectVersion = "1.3.0"
-  val catsMtlVersion    = "0.4.0"
-  val circeVersion      = "0.10.0"
-  val endpointsVersion  = "0.9.0"
-  val monixVersion      = "3.0.0-RC2"
+  val akkaVersion       = "2.5.25"
+  val akkaHttpVersion   = "10.1.10"
+  val catsVersion       = "2.0.0"
+  val catsEffectVersion = "2.0.0"
+  val catsMtlVersion    = "0.7.0"
+  val circeVersion      = "0.12.1"
+  val endpointsVersion  = "0.10.1"
+  val monixVersion      = "3.0.0"
   val scalatestVersion  = "3.0.5"
 
   // resolvers
@@ -45,13 +46,14 @@ object Dependencies {
   val akkaHttpTestkit          = "com.typesafe.akka" %% "akka-http-testkit"           % akkaHttpVersion
   val scalatest                = "org.scalatest"     %% "scalatest"                   % scalatestVersion
   // compiler plugins
-  val kindProjector            = "org.typelevel"     %% "kind-projector"              % "0.10.1"
+  val kindProjector            = "org.typelevel"     %% "kind-projector"              % "0.10.3"
 }
 
 trait Dependencies {
 
   val scalaOrganizationUsed = scalaOrganization
   val scalaVersionUsed = scalaVersion
+  val crossScalaVersionsUsed = crossScalaVersions
 
   val scalaFmtVersionUsed = scalaFmtVersion
 
