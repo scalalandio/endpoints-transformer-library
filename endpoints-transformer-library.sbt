@@ -73,4 +73,3 @@ lazy val akkaTestkit = project
 
 addCommandAlias("fullTest", ";test;fun:test;it:test;scalastyle")
 addCommandAlias("fullCoverageTest", ";coverage;test;coverageReport;coverageAggregate;scalastyle")
-addCommandAlias("relock", ";unlock;reload;update;lock")
